@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { MotiView, MotiText } from "moti";
 
 const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 22
@@ -14,12 +15,40 @@ const statusBarHeight = StatusBar.currentHeight
 export function Header({ name }) {
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.userName}>{name}</Text>
+      <MotiView
+        style={styles.content}
+        from={{ // eixo e onde começa
+          translateY: -150,
+          opacity: 0,
+        }}
+        animate={{ // eixo e onde termina
+          translateY: 0,
+          opacity: 1,
+        }}
+        transition={{ // tipo e tempo de turação
+          type: "timing",
+          duration: 800,
+          delay: 300,
+        }}
+      >
+        <MotiText
+        style={styles.userName}
+        from={{
+          translateX: -300
+        }}
+        animate={{
+          translateX: 0,
+        }}
+        transition={{
+          type: "timing",
+          duration: 800,
+          delay: 800,
+        }}
+        >{name}</MotiText>
         <TouchableOpacity activeOpacity={0.9} style={styles.buttonUser}>
           <Feather name="user" size={27} color="#fff" />
         </TouchableOpacity>
-      </View>
+      </MotiView>
     </View>
   );
 }
@@ -37,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
-    flexDirection: 'row'
+    flexDirection: "row",
   },
   userName: {
     fontSize: 18,
@@ -50,6 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255, 0.5)",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 44 /2 // vira uma elpse
+    borderRadius: 44 / 2, // vira uma elpse
   },
 });
