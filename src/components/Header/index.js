@@ -11,11 +11,11 @@ const statusBarHeight = StatusBar.currentHeight
   ? StatusBar.currentHeight + 22
   : 64; //altura da status bar
 
-export function Header() {
+export function Header({ name }) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.userName}>Mateus Dev</Text>
+        <Text style={styles.userName}>{name}</Text>
         <TouchableOpacity activeOpacity={0.9} style={styles.buttonUser}>
           <Feather name="user" size={27} color="#fff" />
         </TouchableOpacity>
